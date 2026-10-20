@@ -34,8 +34,8 @@ public final class Metadata {
     private Metadata() {
     }
 
-    public static final String NAME = "HMCL";
-    public static final String FULL_NAME = "Hello Minecraft! Launcher";
+    public static final String NAME = "LMCL";
+    public static final String FULL_NAME = "LMCL";
     public static final String VERSION = System.getProperty("hmcl.version.override", JarUtils.getAttribute("hmcl.version", "@develop@"));
 
     /// Explicit Application User Model ID used for Windows taskbar grouping and pinning.
@@ -48,16 +48,16 @@ public final class Metadata {
     public static final int MINIMUM_SUPPORTED_JAVA_VERSION = 17;
     public static final int RECOMMENDED_JAVA_VERSION = 21;
 
-    public static final String PUBLISH_URL = "https://hmcl.huangyuhui.net";
-    public static final String DOWNLOAD_URL = PUBLISH_URL + "/download";
+    public static final String PUBLISH_URL = "https://github.com/Axolotl-Org/LMCL";
+    public static final String DOWNLOAD_URL = PUBLISH_URL + "/releases/latest";
     public static final String HMCL_UPDATE_URL = System.getProperty("hmcl.update_source.override", PUBLISH_URL + "/api/update_link");
-    public static final String MANUAL_UPDATE_URL = "https://github.com/HMCL-dev/HMCL/releases";
+    public static final String MANUAL_UPDATE_URL = PUBLISH_URL + "/releases";
 
-    public static final String DOCS_URL = "https://docs.hmcl.net";
-    public static final String CONTACT_URL = DOCS_URL + "/help.html";
-    public static final String CHANGELOG_URL = DOCS_URL + "/changelog/";
-    public static final String EULA_URL = DOCS_URL + "/eula/hmcl.html";
-    public static final String GROUPS_URL = "https://www.bilibili.com/opus/905435541874409529";
+    public static final String DOCS_URL = PUBLISH_URL + "/tree/main/docs";
+    public static final String CONTACT_URL = PUBLISH_URL + "/issues/new/choose";
+    public static final String CHANGELOG_URL = PUBLISH_URL + "/releases";
+    public static final String EULA_URL = PUBLISH_URL + "/blob/main/LICENSE";
+    public static final String GROUPS_URL = PUBLISH_URL + "/issues/new/choose";
 
     public static final String BUILD_CHANNEL = JarUtils.getAttribute("hmcl.version.type", "nightly");
     public static final String GITHUB_SHA = JarUtils.getAttribute("hmcl.version.hash", null);

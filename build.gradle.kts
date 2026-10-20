@@ -91,10 +91,12 @@ tasks.register<UpdateDocuments>("updateDocuments") {
     documentsDir.set(layout.projectDirectory.dir("docs"))
 }
 
+// The update source is repository specific, so callers must supply it,
+// e.g. `-PcheckUpdateDevUri=https://ci.example.com/job/nightly`.
 tasks.register<CheckUpdate>("checkUpdateDev") {
-    uri.set("https://ci.huangyuhui.net/job/HMCL-nightly")
+    uri.set(providers.gradleProperty("checkUpdateDevUri"))
 }
 
 tasks.register<CheckUpdate>("checkUpdateStable") {
-    uri.set("https://ci.huangyuhui.net/job/HMCL-stable")
+    uri.set(providers.gradleProperty("checkUpdateStableUri"))
 }

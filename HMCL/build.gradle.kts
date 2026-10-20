@@ -313,8 +313,8 @@ val makeDeb = tasks.register("makeDeb", CreateDeb::class) {
 }
 
 tasks.build {
-    dependsOn(makeExecutables)
-    dependsOn(makeDeb)
+    // Distributable executables are not part of the default build.
+    // Run `./gradlew makeExecutables makeDeb` explicitly when you need them.
 }
 
 fun parseToolOptions(options: String?): MutableList<String> {

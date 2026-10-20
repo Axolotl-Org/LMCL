@@ -55,10 +55,10 @@ public final class AboutPage extends SpinnerPane {
             var launcher = LineButton.createExternalLinkButton(Metadata.PUBLISH_URL);
             launcher.setLargeTitle(true);
             launcher.setLeading(FXUtils.newBuiltinImage("/assets/img/icon.png"));
-            launcher.setTitle("Hello Minecraft! Launcher");
+            launcher.setTitle(Metadata.FULL_NAME);
             launcher.setSubtitle(Metadata.VERSION);
 
-            var author = LineButton.createExternalLinkButton("https://space.bilibili.com/1445341");
+            var author = LineButton.createExternalLinkButton("https://github.com/HMCL-dev");
             author.setLargeTitle(true);
             author.setLeading(FXUtils.newBuiltinImage("/assets/img/yellow_fish.png"));
             author.setTitle("huanghongxun");
@@ -83,7 +83,7 @@ public final class AboutPage extends SpinnerPane {
             claim.setTitle(i18n("about.claim"));
             claim.setSubtitle(i18n("about.claim.statement"));
 
-            var openSource = LineButton.createExternalLinkButton("https://github.com/HMCL-dev/HMCL");
+            var openSource = LineButton.createExternalLinkButton(Metadata.PUBLISH_URL);
             openSource.setLargeTitle(true);
             openSource.setTitle(i18n("about.open_source"));
             openSource.setSubtitle(i18n("about.open_source.statement"));
