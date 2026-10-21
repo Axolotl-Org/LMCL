@@ -49,13 +49,9 @@ public final class Metadata {
     public static final int RECOMMENDED_JAVA_VERSION = 21;
 
     public static final String PUBLISH_URL = "https://github.com/Axolotl-Org/LMCL";
-    public static final String DOWNLOAD_URL = PUBLISH_URL + "/releases/latest";
-    public static final String HMCL_UPDATE_URL = System.getProperty("hmcl.update_source.override", PUBLISH_URL + "/api/update_link");
-    public static final String MANUAL_UPDATE_URL = PUBLISH_URL + "/releases";
 
     public static final String DOCS_URL = PUBLISH_URL + "/tree/main/docs";
     public static final String CONTACT_URL = PUBLISH_URL + "/issues/new/choose";
-    public static final String CHANGELOG_URL = PUBLISH_URL + "/releases";
     public static final String EULA_URL = PUBLISH_URL + "/blob/main/LICENSE";
     public static final String GROUPS_URL = PUBLISH_URL + "/issues/new/choose";
 

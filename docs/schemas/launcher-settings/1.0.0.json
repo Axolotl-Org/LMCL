@@ -18,12 +18,6 @@
     "language": {
       "type": "string"
     },
-    "acceptPreviewUpdate": {
-      "type": "boolean"
-    },
-    "disableAutoShowUpdateDialog": {
-      "type": "boolean"
-    },
     "disableAprilFools": {
       "type": "boolean"
     },

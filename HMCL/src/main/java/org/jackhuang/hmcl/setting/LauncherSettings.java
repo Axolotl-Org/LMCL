@@ -192,24 +192,6 @@ public final class LauncherSettings extends ObservableSetting implements JsonSch
         return language;
     }
 
-    /// Whether preview builds are accepted by update checks.
-    @SerializedName("acceptPreviewUpdate")
-    private final BooleanProperty acceptPreviewUpdate = new SimpleBooleanProperty(false);
-
-    /// Returns the preview update opt-in property.
-    public BooleanProperty acceptPreviewUpdateProperty() {
-        return acceptPreviewUpdate;
-    }
-
-    /// Whether automatic update dialogs are disabled.
-    @SerializedName("disableAutoShowUpdateDialog")
-    private final BooleanProperty disableAutoShowUpdateDialog = new SimpleBooleanProperty(false);
-
-    /// Returns the automatic update dialog disable property.
-    public BooleanProperty disableAutoShowUpdateDialogProperty() {
-        return disableAutoShowUpdateDialog;
-    }
-
     /// Whether April Fools features are disabled.
     @SerializedName("disableAprilFools")
     private final BooleanProperty disableAprilFools = new SimpleBooleanProperty(false);

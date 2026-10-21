@@ -27,9 +27,6 @@
     "height": {
       "type": "number"
     },
-    "promptedVersion": {
-      "type": "string"
-    },
     "shownTips": {
       "type": "object",
       "additionalProperties": true

@@ -411,7 +411,6 @@ public final class LegacyConfigMigrator {
         moveMember(json, state, "height");
         migrateLegacyWindowContentSize(state, "width");
         migrateLegacyWindowContentSize(state, "height");
-        moveMember(json, state, "promptedVersion");
         moveMember(json, state, "shownTips");
 
         LauncherState result = JsonUtils.GSON.fromJson(state, LauncherState.class);

@@ -55,7 +55,6 @@ public final class LauncherStateTest {
         assertFalse(state.shouldSaveImmediately(state.widthProperty()));
         assertFalse(state.shouldSaveImmediately(state.heightProperty()));
         assertTrue(state.shouldSaveImmediately(state.schemaProperty()));
-        assertTrue(state.shouldSaveImmediately(state.promptedVersionProperty()));
         assertTrue(state.shouldSaveImmediately(state.getShownTips()));
     }
 
@@ -68,7 +67,6 @@ public final class LauncherStateTest {
                   "y": 0.5,
                   "width": 1280.0,
                   "height": 720.0,
-                  "promptedVersion": "3.6.15",
                   "shownTips": {
                     "javaVersionTip": 21
                   },
@@ -83,7 +81,6 @@ public final class LauncherStateTest {
         assertFalse(settings.has("y"));
         assertFalse(settings.has("width"));
         assertFalse(settings.has("height"));
-        assertFalse(settings.has("promptedVersion"));
         assertFalse(settings.has("shownTips"));
         assertTrue(settings.has("logLines"));
         assertTrue(settings.has("localization"));
@@ -92,7 +89,6 @@ public final class LauncherStateTest {
         assertEquals(0.5, state.getY(), 1e-9);
         assertEquals(1264.0, state.getWidth());
         assertEquals(704.0, state.getHeight());
-        assertEquals("3.6.15", state.getPromptedVersion());
         assertEquals(21.0, state.getShownTips().get("javaVersionTip"));
         assertEquals(LauncherState.CURRENT_SCHEMA, state.getSchema());
 

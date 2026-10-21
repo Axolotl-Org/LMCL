@@ -369,20 +369,6 @@
     -fx-wrap-text: true;
 }
 
-.bubble {
-    -fx-background-color: -monet-inverse-surface-transparent-80;
-    -fx-background-radius: 2px;
-}
-
-.bubble > HBox > .two-line-list-item > .first-line > .title,
-.bubble > HBox > .two-line-list-item > HBox > .subtitle {
-    -fx-text-fill: -monet-inverse-on-surface;
-}
-
-.bubble .svg {
-    -fx-fill: -monet-inverse-on-surface;
-}
-
 .sponsor-pane {
     -fx-cursor: hand;
 }
@@ -1958,10 +1944,6 @@
 
 .line-toggle-button .jfx-toggle-button {
     -fx-padding: 0;
-}
-
-.update-pane:active .subtitle-label {
-    -fx-text-fill: -monet-tertiary;
 }
 
 /*******************************************************************************

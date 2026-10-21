@@ -24,15 +24,12 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import org.jackhuang.hmcl.util.gson.JsonSchema;
 import org.jackhuang.hmcl.util.gson.JsonSerializable;
 import org.jackhuang.hmcl.util.gson.ObservableSetting;
 import org.jetbrains.annotations.NotNullByDefault;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -187,25 +184,6 @@ public final class LauncherState extends ObservableSetting implements JsonSchema
     /// Sets the launcher window content height.
     public void setHeight(double height) {
         this.height.set(height);
-    }
-
-    /// The latest update version that has already prompted the user.
-    @SerializedName("promptedVersion")
-    private final StringProperty promptedVersion = new SimpleStringProperty();
-
-    /// Returns the latest prompted update version.
-    public @Nullable String getPromptedVersion() {
-        return promptedVersion.get();
-    }
-
-    /// Returns the latest prompted update version property.
-    public StringProperty promptedVersionProperty() {
-        return promptedVersion;
-    }
-
-    /// Sets the latest prompted update version.
-    public void setPromptedVersion(@Nullable String promptedVersion) {
-        this.promptedVersion.set(promptedVersion);
     }
 
     /// Tip markers that prevent repeated prompts.
