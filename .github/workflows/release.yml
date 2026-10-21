@@ -37,19 +37,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
         with:
           cache-cleanup: never
-      - name: Prepare signing key
-        # The secret holds the PKCS#8 DER private key, base64-encoded. Signing is skipped when it is absent,
-        # which produces unsigned artifacts that the launcher refuses to install automatically.
-        env:
-          SIGNATURE_KEY_BASE64: ${{ secrets.HMCL_SIGNATURE_KEY }}
-        run: |
-          if [ -z "$SIGNATURE_KEY_BASE64" ]; then
-            echo "::warning::HMCL_SIGNATURE_KEY is not set, release artifacts will be unsigned"
-            exit 0
-          fi
-          key_file="$RUNNER_TEMP/hmcl-signature-key.der"
-          printf '%s' "$SIGNATURE_KEY_BASE64" | tr -d '\r\n' | base64 -d > "$key_file"
-          echo "HMCL_SIGNATURE_KEY=$key_file" >> "$GITHUB_ENV"
       - name: Build distributables
         env:
           MICROSOFT_AUTH_ID: ${{ secrets.MICROSOFT_AUTH_ID }}

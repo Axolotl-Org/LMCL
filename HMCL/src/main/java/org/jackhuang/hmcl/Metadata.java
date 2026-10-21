@@ -56,7 +56,6 @@ public final class Metadata {
     public static final String GROUPS_URL = PUBLISH_URL + "/issues/new/choose";
 
     public static final String BUILD_CHANNEL = JarUtils.getAttribute("hmcl.version.type", "nightly");
-    public static final String GITHUB_SHA = JarUtils.getAttribute("hmcl.version.hash", null);
 
     public static final Path CURRENT_DIRECTORY = Path.of(System.getProperty("user.dir")).toAbsolutePath().normalize();
     public static final Path MINECRAFT_DIRECTORY = OperatingSystem.getWorkingDirectory("minecraft");

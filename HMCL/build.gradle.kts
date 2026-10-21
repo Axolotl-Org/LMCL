@@ -9,13 +9,7 @@ import org.jackhuang.hmcl.gradle.l10n.SyncTranslations
 import org.jackhuang.hmcl.gradle.l10n.UpsideDownTranslate
 import org.jackhuang.hmcl.gradle.pack.CreateDeb
 import org.jackhuang.hmcl.gradle.pack.ReleaseType
-import java.net.URI
-import java.nio.file.FileSystems
-import java.nio.file.Files
-import java.security.KeyFactory
 import java.security.MessageDigest
-import java.security.Signature
-import java.security.spec.PKCS8EncodedKeySpec
 import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -31,9 +25,10 @@ repositories {
     maven(url = "https://jitpack.io")
 }
 
-val isOfficial = GitHubActionUtils.IS_ON_OFFICIAL_REPO
+// Builds of the official repository default to the nightly channel, builds elsewhere report themselves as unofficial.
+val isOfficialRepo = GitHubActionUtils.IS_ON_OFFICIAL_REPO
 
-val versionType = System.getenv("VERSION_TYPE") ?: if (isOfficial) "nightly" else "unofficial"
+val versionType = System.getenv("VERSION_TYPE") ?: if (isOfficialRepo) "nightly" else "unofficial"
 
 // Date-encoded version prefix in `YY.MM.DD` form. UTC is used so that the version
 // does not depend on the time zone of the machine performing the build.
@@ -90,31 +85,6 @@ fun createChecksum(file: File) {
     }
 }
 
-fun attachSignature(jar: File) {
-    val keyLocation = System.getenv("HMCL_SIGNATURE_KEY")
-    if (keyLocation == null) {
-        logger.warn("Missing signature key")
-        return
-    }
-
-    val privatekey = KeyFactory.getInstance("RSA").generatePrivate(PKCS8EncodedKeySpec(File(keyLocation).readBytes()))
-    val signer = Signature.getInstance("SHA512withRSA")
-    signer.initSign(privatekey)
-    ZipFile(jar).use { zip ->
-        zip.stream()
-            .sorted(Comparator.comparing { it.name })
-            .filter { it.name != "META-INF/hmcl_signature" }
-            .forEach {
-                signer.update(digest("SHA-512", it.name.toByteArray()))
-                signer.update(digest("SHA-512", zip.getInputStream(it).readBytes()))
-            }
-    }
-    val signature = signer.sign()
-    FileSystems.newFileSystem(URI.create("jar:" + jar.toURI()), emptyMap<String, Any>()).use { zipfs ->
-        Files.newOutputStream(zipfs.getPath("META-INF/hmcl_signature")).use { it.write(signature) }
-    }
-}
-
 tasks.withType<JavaCompile> {
     sourceCompatibility = "17"
     targetCompatibility = "17"
@@ -155,9 +125,6 @@ tasks.compileJava {
 val hmclProperties = buildList {
     add("hmcl.version" to project.version.toString())
     add("hmcl.add-opens" to addOpens.joinToString(" "))
-    System.getenv("GITHUB_SHA")?.let {
-        add("hmcl.version.hash" to it)
-    }
     add("hmcl.version.type" to versionType)
     add("hmcl.microsoft.auth.id" to microsoftAuthId)
     add("hmcl.curseforge.apikey" to curseForgeApiKey)
@@ -228,7 +195,6 @@ tasks.shadowJar {
     }
 
     doLast {
-        attachSignature(jarPath)
         createChecksum(jarPath)
     }
 }

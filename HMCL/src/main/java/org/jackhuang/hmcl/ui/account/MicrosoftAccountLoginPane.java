@@ -46,7 +46,6 @@ import org.jackhuang.hmcl.ui.Controllers;
 import org.jackhuang.hmcl.ui.FXUtils;
 import org.jackhuang.hmcl.ui.WeakListenerHolder;
 import org.jackhuang.hmcl.ui.construct.*;
-import org.jackhuang.hmcl.upgrade.IntegrityChecker;
 import org.jackhuang.hmcl.util.QrCodeUtils;
 import org.jackhuang.hmcl.util.StringUtils;
 
@@ -139,22 +138,12 @@ public class MicrosoftAccountLoginPane extends JFXDialogLayout implements Dialog
         setBody(rootContainer);
         rootContainer.setAlignment(Pos.TOP_CENTER);
 
-        StackPane warningPane = new StackPane();
-
-        if (!IntegrityChecker.isOfficial()) {
-            var unofficialHintPane = new HintPane(MessageDialogPane.MessageType.WARNING);
-            unofficialHintPane.setSegment(i18n("unofficial.hint"));
-            warningPane.getChildren().add(unofficialHintPane);
-        } else if (Accounts.OAUTH_CALLBACK.getClientId().isEmpty()) {
-            HintPane snapshotHint = new HintPane(MessageDialogPane.MessageType.WARNING);
-            snapshotHint.setSegment(i18n("account.methods.microsoft.snapshot"));
-            warningPane.getChildren().add(snapshotHint);
+        // Without an embedded Microsoft OAuth client ID no login flow can start, so only the button state is updated.
+        if (Accounts.OAUTH_CALLBACK.getClientId().isEmpty()) {
             btnLogin.setDisable(true);
             loginButtonSpinner.setLoading(false);
             return;
         }
-
-        rootContainer.getChildren().add(warningPane);
 
         if (currentStep instanceof Step.Init) {
             btnLogin.setOnAction(e -> this.step.set(new Step.StartAuthorizationCodeLogin()));
@@ -240,7 +229,7 @@ public class MicrosoftAccountLoginPane extends JFXDialogLayout implements Dialog
             codeBox.setMaxWidth(USE_PREF_SIZE);
 
             leftVBox.getChildren().setAll(new Group(qrCode), codeBox);
-            rightVBox.getChildren().setAll(warningPane, deviceHint);
+            rightVBox.getChildren().setAll(deviceHint);
 
             rootContainer.getChildren().setAll(hbox);
         } else if (currentStep instanceof Step.DeviceLoginCompleted) {
