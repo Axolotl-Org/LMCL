@@ -1,4 +1,3 @@
-import org.jackhuang.hmcl.gradle.ci.CheckUpdate
 import org.jackhuang.hmcl.gradle.docs.UpdateDocuments
 import org.jackhuang.hmcl.gradle.l10n.ParseLanguageSubtagRegistry
 
@@ -24,15 +23,7 @@ subprojects {
             dirs = setOf(rootProject.file("lib"))
         }
 
-        System.getenv("MAVEN_CENTRAL_REPO").let { repo ->
-            if (repo.isNullOrBlank())
-                mavenCentral()
-            else
-                maven(url = repo)
-        }
-
-        maven(url = "https://jitpack.io")
-        maven(url = "https://libraries.minecraft.net")
+        mavenCentral()
     }
 
     tasks.withType<JavaCompile> {
@@ -89,14 +80,4 @@ tasks.register<ParseLanguageSubtagRegistry>("parseLanguageSubtagRegistry") {
 
 tasks.register<UpdateDocuments>("updateDocuments") {
     documentsDir.set(layout.projectDirectory.dir("docs"))
-}
-
-// The update source is repository specific, so callers must supply it,
-// e.g. `-PcheckUpdateDevUri=https://ci.example.com/job/nightly`.
-tasks.register<CheckUpdate>("checkUpdateDev") {
-    uri.set(providers.gradleProperty("checkUpdateDevUri"))
-}
-
-tasks.register<CheckUpdate>("checkUpdateStable") {
-    uri.set(providers.gradleProperty("checkUpdateStableUri"))
 }

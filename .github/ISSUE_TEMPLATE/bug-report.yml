@@ -10,14 +10,14 @@ body:
         提交前请确认：
 
         * 该问题确实是 **LMCL 的错误**，而**不是 Minecraft 非正常退出**。
-        * 你的启动器版本是**最新的预览版本**。你可以从 [GitHub Actions](https://github.com/Axolotl-Org/LMCL/actions/workflows/gradle.yml?query=branch%3Amain+event%3Apush) 或 [nightly.link](https://nightly.link/Axolotl-Org/LMCL/workflows/gradle/main) 下载最新预览版本。
+        * 你的启动器版本是**最新的预览版本**。你可以从 [GitHub Actions](https://github.com/Axolotl-Org/LMCL/actions/workflows/gradle.yml?query=branch%3Amain+event%3Apush) 下载最新预览版本。
 
         如果你的问题并不属于上述两类，你可以选取另一种 Issue 类型。
 
         Before submitting, please confirm:
 
         * The issue is indeed **a bug of LMCL**, not **Minecraft abnormal exit**.
-        * Your launcher is the **latest nightly build**. You can download the latest nightly build from [GitHub Actions](https://github.com/Axolotl-Org/LMCL/actions/workflows/gradle.yml?query=branch%3Amain+event%3Apush) or [nightly.link](https://nightly.link/Axolotl-Org/LMCL/workflows/gradle/main).
+        * Your launcher is the **latest nightly build**. You can download the latest nightly build from [GitHub Actions](https://github.com/Axolotl-Org/LMCL/actions/workflows/gradle.yml?query=branch%3Amain+event%3Apush).
 
         If your issue does not fall into the above two categories, you can choose another type of issue.
   - type: textarea

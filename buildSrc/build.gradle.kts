@@ -1,10 +1,5 @@
 repositories {
-    System.getenv("MAVEN_CENTRAL_REPO").let { repo ->
-        if (repo.isNullOrBlank())
-            mavenCentral()
-        else
-            maven(url = repo)
-    }
+    mavenCentral()
 }
 
 dependencies {
